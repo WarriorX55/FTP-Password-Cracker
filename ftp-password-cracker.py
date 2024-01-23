@@ -21,7 +21,7 @@ try:
     with open(passwordlist, 'r') as pw:
 
         for word in pw:
-            if word is None:
+            if word is not None:
                 word=word.strip('\n')
 
                 try:
